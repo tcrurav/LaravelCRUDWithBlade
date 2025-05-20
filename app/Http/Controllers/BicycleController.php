@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use App\Models\Bicycle;
@@ -21,6 +22,15 @@ class BicycleController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'brand' => 'required|min:3',
+            'model' => 'required',
+        ], [
+            'brand.required' => 'Brand is mandatory in a bicycle.',
+            'brand.min' => 'Bicycle brand must be at least 3 characters long.',
+            'model.required' => 'Model is mandatory in a bicycle.',
+        ]);
+ 
         $bicycle = new Bicycle;
         $bicycle->brand = $request->input('brand');
         $bicycle->model = $request->input('model');

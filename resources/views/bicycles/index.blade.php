@@ -14,6 +14,7 @@
             <li>{{ $bicycle->brand }} {{ $bicycle->model }}</li>
         @endforeach
     </ul>
+    <a href="/bicycles/create">Crear nueva bicicleta</a>
 </body>
 
 </html>
